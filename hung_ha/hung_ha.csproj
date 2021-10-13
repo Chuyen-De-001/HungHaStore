@@ -2062,7 +2062,11 @@
     <Content Include="asset\vendor\img\banner\banner-flash-sale-noi-that-banner-flash-sale-furiniture-8.png" />
     <Content Include="asset\vendor\img\banner\Banner-mien-phi-van-chuyen-2.png" />
     <Content Include="asset\vendor\img\banner\banner-phu-kien-trang-tri-2.png" />
+    <Content Include="asset\vendor\img\banner\banner11.jpg" />
     <Content Include="asset\vendor\img\banner\noi-that-banner.jpg" />
+    <Content Include="asset\vendor\img\icon\dam-bao.png" />
+    <Content Include="asset\vendor\img\icon\vat-lieu.png" />
+    <Content Include="asset\vendor\img\icon\y-tuong.png" />
     <Content Include="asset\vendor\img\logo\logo.png" />
     <Content Include="asset\vendor\img\product\avar-2-300x300.jpg" />
     <Content Include="asset\vendor\img\product\avar-7-300x300.jpg" />
