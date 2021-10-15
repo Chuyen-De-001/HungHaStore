@@ -20,8 +20,10 @@ namespace hung_ha.Controllers
             try
             {
                 var model = Product.findOne(id);
+                string[] breadcrumb = { "Sản phẩm", "Chi tiết sản phẩm", model.name };
                 var listProductReleted = Product.findByCategory(model.category_id);
                 ViewBag.ProductReleted = listProductReleted;
+                ViewBag.Breadcrumb = breadcrumb;
                 return View(model);
             }
             catch

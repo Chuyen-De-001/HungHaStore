@@ -1,0 +1,21 @@
+﻿@using hung_ha.Models.DbSet;
+@using hung_ha.helpers;
+@model List<cart>
+@{
+    var currency = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+}   
+<ul class="cart_list">
+    @foreach (cart item in Model)
+    {
+        <li>
+            <a href="#" class="item_remove"><i class="ion-close"></i></a>
+            <a href="#"><img src="~/asset/vendor/img/product/@item.img" alt="cart_thumb1">@item.name</a>
+            <span class="cart_quantity"> @item.quantity x <span class="cart_amount"></span>@String.Format(currency, "{0:c}", item.price)</span>
+        </li>
+    }
+</ul>
+<div class="cart_footer">
+    <p class="cart_total"><strong>Tổng tiền:</strong> <span class="cart_price">@String.Format(currency, "{0:c}", CartHelper.sum())</p>
+    <p class="cart_buttons"><a href="#" class="btn btn-fill-line rounded-0 view-cart">View Cart</a><a href="#" class="btn btn-fill-out rounded-0 checkout">Checkout</a></p>
+</div>
+

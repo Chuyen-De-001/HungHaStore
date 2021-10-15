@@ -130,16 +130,20 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="helpers\AlertHelper.cs" />
     <Compile Include="helpers\AuthorHelper.cs" />
+    <Compile Include="helpers\CartHelper.cs" />
     <Compile Include="helpers\PasswordHelper.cs" />
     <Compile Include="helpers\TimeHelper.cs" />
     <Compile Include="Models\DAO\User.cs" />
+    <Compile Include="Models\DbSet\cart.cs" />
     <Compile Include="Models\DbSet\Model1.cs" />
     <Compile Include="Models\DbSet\sysdiagram.cs" />
     <Compile Include="Models\DbSet\tblInfo.cs" />
@@ -2056,6 +2060,7 @@
     <Content Include="asset\js\jquery-ui.js" />
     <Content Include="asset\js\jquery.countdown.min.js" />
     <Content Include="asset\js\jquery.dd.min.js" />
+    <Content Include="asset\js\jquery.easing.min.js" />
     <Content Include="asset\js\jquery.elevatezoom.js" />
     <Content Include="asset\js\jquery.fitvids.js" />
     <Content Include="asset\js\magnific-popup.min.js" />
@@ -2454,6 +2459,7 @@
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Product\View.cshtml" />
+    <Content Include="Views\Cart\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\ViewModel\" />

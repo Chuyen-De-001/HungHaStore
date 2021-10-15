@@ -23,12 +23,14 @@ namespace hung_ha.Controllers
         [HttpGet]
         public ActionResult Register()
         {
+            ViewBag.Breadcrumb = new string[] { "Tài khoản", "Đăng ký" };
             return View();
         }
 
         [HttpPost]
         public ActionResult Register(RegisterForm model)
         {
+            ViewBag.Breadcrumb = new string[] { "Tài khoản", "Đăng ký" };
             try
             {
                 if (ModelState.IsValid)
@@ -55,18 +57,21 @@ namespace hung_ha.Controllers
         [HttpGet]
         public ActionResult Login()
         {
+            ViewBag.Breadcrumb = new string[] { "Tài khoản", "Đăng nhập" };
             return View();
         }
 
         [HttpPost]
         public ActionResult Login(LoginForm model)
-        {     
+        {
+             ViewBag.Breadcrumb = new string[] { "Tài khoản", "Đăng nhập" };
             try
             {
                 if (ModelState.IsValid)
                 {
                     if (model.login())
                     {
+                        AlertHelper.set("success", "Đăng nhập thành công!");
                         return RedirectToAction("Index", "Home");
                     }
                 }
