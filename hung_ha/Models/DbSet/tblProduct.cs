@@ -33,6 +33,10 @@ namespace hung_ha.Models.DbSet
         [StringLength(255)]
         public string img { get; set; }
 
+        public int? views { get; set; }
+
+        public int? sale { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tlbInvoiceDetail> tlbInvoiceDetails { get; set; }
 

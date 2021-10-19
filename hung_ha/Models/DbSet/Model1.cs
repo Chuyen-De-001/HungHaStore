@@ -8,18 +8,17 @@ namespace hung_ha.Models.DbSet
     public partial class Model1 : DbContext
     {
         public Model1()
-            : base("name=Model1")
+            : base("name=Database")
         {
         }
 
-        public virtual DbSet<sysdiagram> sysdiagram { get; set; }
-        public virtual DbSet<tblInfo> tblInfoe { get; set; }
-        public virtual DbSet<tblInvoice> tblInvoice { get; set; }
-        public virtual DbSet<tblProduct> tblProduct { get; set; }
-        public virtual DbSet<tblProductCategory> tblProductCategorie { get; set; }
-        public virtual DbSet<tblStore> tblStore { get; set; }
-        public virtual DbSet<tblUser> tblUser { get; set; }
-        public virtual DbSet<tlbInvoiceDetail> tlbInvoiceDetail { get; set; }
+        public virtual DbSet<tblInfo> tblInfoes { get; set; }
+        public virtual DbSet<tblInvoice> tblInvoices { get; set; }
+        public virtual DbSet<tblProduct> tblProducts { get; set; }
+        public virtual DbSet<tblProductCategory> tblProductCategories { get; set; }
+        public virtual DbSet<tblStore> tblStores { get; set; }
+        public virtual DbSet<tblUser> tblUsers { get; set; }
+        public virtual DbSet<tlbInvoiceDetail> tlbInvoiceDetails { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

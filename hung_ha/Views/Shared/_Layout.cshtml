@@ -1,6 +1,9 @@
 ﻿@using hung_ha.helpers;
+@using hung_ha.Models.DbSet;
 @{ 
+    var currency = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
     string[] breadcrumb = null;
+    List<cart> listCart = CartHelper.list();
     try
     {
         breadcrumb = ViewBag.Breadcrumb;
@@ -100,11 +103,9 @@
                             </li>
                             <li>
                                 <a class="nav-link font-weight-bold" href="#">Giường</a>
-
                             </li>
                             <li>
                                 <a class="nav-link font-weight-bold" href="#">Kệ sách</a>
-
                             </li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle nav-link font-weight-bold" href="#" data-toggle="dropdown">Bàn</a>
@@ -133,13 +134,30 @@
                             </div><div class="search_overlay"></div><div class="search_overlay"></div>
                         </li>
                         <li class="dropdown cart_dropdown">
-                            <a class="nav-link cart_trigger" id="shopping-cart" href="#" data-toggle="dropdown">
+                            <a href="@Url.Action("ViewCart","Cart")" class="nav-link cart_trigger" id="shopping-cart">
                                 <i class="linearicons-cart"></i>
                                 <span class="cart_count">
                                     @CartHelper.count()
                                 </span>
                             </a>
                             <div class="cart_box dropdown-menu dropdown-menu-right">
+                                @if (CartHelper.list() != null)
+                                {
+                                    <ul class="cart_list">
+                                        @foreach (cart item in CartHelper.list())
+                                        {
+                                            <li>
+                                                <a href="#" class="item_remove"><i class="ion-close"></i></a>
+                                                <a href="#"><img src="~/asset/vendor/img/product/@item.img" alt="cart_thumb1">@item.name</a>
+                                                <span class="cart_quantity"> @item.quantity x <span class="cart_amount"></span>@String.Format(currency, "{0:c}", item.price)</span>
+                                            </li>
+                                        }
+                                    </ul>
+                                    <div class="cart_footer">
+                                        <p class="cart_total"><strong>Tổng tiền:</strong> <span class="cart_price">@String.Format(currency, "{0:c}", CartHelper.sum())</p>
+                                        <p class="cart_buttons"><a href="@Url.Action("ViewCart","Cart")" class="btn btn-fill-line rounded-0 view-cart">Chi tiết giỏ hàng</a><a href="#" class="btn btn-fill-out rounded-0 checkout">Checkout</a></p>
+                                    </div>
+                                }
                             </div>
                         </li>
                     </ul>

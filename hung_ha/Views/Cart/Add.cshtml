@@ -16,6 +16,6 @@
 </ul>
 <div class="cart_footer">
     <p class="cart_total"><strong>Tổng tiền:</strong> <span class="cart_price">@String.Format(currency, "{0:c}", CartHelper.sum())</p>
-    <p class="cart_buttons"><a href="#" class="btn btn-fill-line rounded-0 view-cart">View Cart</a><a href="#" class="btn btn-fill-out rounded-0 checkout">Checkout</a></p>
+    <p class="cart_buttons"><a href="@Url.Action("ViewCart","Cart")" class="btn btn-fill-line rounded-0 view-cart">Chi tiết giỏ hàng</a><a href="#" class="btn btn-fill-out rounded-0 checkout">Checkout</a></p>
 </div>
 

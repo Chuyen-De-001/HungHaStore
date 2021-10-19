@@ -13,15 +13,15 @@ namespace hung_ha.Models.DAO
 
         public static List<tblProduct> findAll()
         {
-            var list = context.tblProduct.ToList();
+            var list = context.tblProducts.ToList();
             return list;
         }
 
         public static List<tblProduct> findLimit(int limit = 20)
         {
             Random rand = new Random();
-            int toSkip = rand.Next(0, context.tblProduct.Count());
-            var list = context.tblProduct.OrderBy(s=>s.id).Skip(toSkip).Take(limit).ToList();
+            int toSkip = rand.Next(0, context.tblProducts.Count());
+            var list = context.tblProducts.OrderBy(s=>s.id).Skip(toSkip).Take(limit).ToList();
             return list;
         }
 
@@ -29,7 +29,7 @@ namespace hung_ha.Models.DAO
         {
             try
             {
-                var product = context.tblProduct.Where(s => s.id == id).Single();
+                var product = context.tblProducts.Where(s => s.id == id).Single();
                 return product;
             }
             catch
@@ -44,8 +44,8 @@ namespace hung_ha.Models.DAO
             try
             {
                 Random rand = new Random();
-                int toSkip = rand.Next(0, context.tblProduct.Count());
-                var list = context.tblProduct.Where(s => s.category_id == category).Skip(toSkip).Take(7).ToList();
+                int toSkip = rand.Next(0, context.tblProducts.Count());
+                var list = context.tblProducts.Where(s => s.category_id == category).Skip(toSkip).Take(7).ToList();
                 return list;
             }
             catch

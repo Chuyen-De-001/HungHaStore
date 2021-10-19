@@ -29,7 +29,7 @@ namespace hung_ha.Models.Form
         {
             try
             {
-                context.tblUser.Add(user);
+                context.tblUsers.Add(user);
                 context.SaveChanges();
                 return user;
             }

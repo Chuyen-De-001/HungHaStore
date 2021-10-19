@@ -31,14 +31,13 @@ namespace hung_ha.helpers
             {
                 model.quantity = model.quantity + 1;
                 model.total = model.quantity * model.price;
-
                 CartHelper.updateOne(model, list);
             }
             else
             {
                 list.Add(cart);
             }
-            HttpContext.Current.Session["cartSession"] = list;
+            CartHelper.setList(list);
             return list;
         }
 
@@ -62,7 +61,7 @@ namespace hung_ha.helpers
             return null;
         }
 
-        public static void updateOne(cart cart, List<cart> list)
+        public static void updateOne(cart cart, List<cart> list = null)
         {
             foreach (cart item in list)
             {
@@ -82,10 +81,11 @@ namespace hung_ha.helpers
                 if (HttpContext.Current.Session["cartSession"] != null)
                 {
                     list = (List<cart>)HttpContext.Current.Session["cartSession"];
+                    return list;
                 }
             }
             catch { }
-            return list;
+            return null;
         }
 
         public static int count()
@@ -93,6 +93,10 @@ namespace hung_ha.helpers
             try
             {
                 List<cart> list = CartHelper.list();
+                if(list == null)
+                {
+                    return 0;
+                }
                 return list.Count;
             }
             catch{}
@@ -105,12 +109,31 @@ namespace hung_ha.helpers
             try
             {
                 List<cart> list = CartHelper.list();
+                if(list == null) { return 0; }
                 foreach (cart item in list) {
                     total += item.total;
                 }
             }
             catch { }
             return total;
+        }
+
+        public static cart findOne(int product_id)
+        {
+            List<cart> list = CartHelper.list();
+            foreach (cart item in list)
+            {   
+                if(item.product_id == product_id)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+
+        public static void setList(List<cart> list)
+        {
+            HttpContext.Current.Session["cartSession"] = list;
         }
     }
 

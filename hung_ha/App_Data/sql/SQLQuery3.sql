@@ -190,3 +190,8 @@ select * limit 20 from tblProduct
 select top 10 * from tblProduct order by newid()
 
 insert into tblUsers (username,password,email,role,created_at) values ('hai123456','asdasdasdasd','mitt@gmail.com',1,123123213)
+
+
+ALTER TABLE tblProduct ADD views int NOT NULL DEFAULT 0;
+
+ALTER TABLE tblProduct ADD sale int NOT NULL DEFAULT 0;

@@ -144,8 +144,8 @@
     <Compile Include="helpers\TimeHelper.cs" />
     <Compile Include="Models\DAO\User.cs" />
     <Compile Include="Models\DbSet\cart.cs" />
+    <Compile Include="Models\DAO\Product.cs" />
     <Compile Include="Models\DbSet\Model1.cs" />
-    <Compile Include="Models\DbSet\sysdiagram.cs" />
     <Compile Include="Models\DbSet\tblInfo.cs" />
     <Compile Include="Models\DbSet\tblInvoice.cs" />
     <Compile Include="Models\DbSet\tblProduct.cs" />
@@ -153,7 +153,6 @@
     <Compile Include="Models\DbSet\tblStore.cs" />
     <Compile Include="Models\DbSet\tblUser.cs" />
     <Compile Include="Models\DbSet\tlbInvoiceDetail.cs" />
-    <Compile Include="Models\DAO\Product.cs" />
     <Compile Include="Models\Form\LoginForm.cs" />
     <Compile Include="Models\Form\RegisterForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2460,6 +2459,7 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Product\View.cshtml" />
     <Content Include="Views\Cart\Add.cshtml" />
+    <Content Include="Views\Cart\ViewCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\ViewModel\" />

@@ -1,0 +1,145 @@
+﻿@using hung_ha.Models.DbSet;
+@using hung_ha.helpers;
+@model List<cart>
+@{
+    ViewBag.Title = "Giỏ hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var currency = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+}
+
+<div class="main_content">
+
+    <!-- START SECTION SHOP -->
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive shop_cart_table">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="product-thumbnail">&nbsp;</th>
+                                    <th class="product-name">Sản phẩm</th>
+                                    <th class="product-price">Đơn giá</th>
+                                    <th class="product-quantity">Số lượng</th>
+                                    <th class="product-subtotal">Thành tiền</th>
+                                    <th class="product-remove">Xóa</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null)
+                                {
+                                    foreach (cart item in Model)
+                                    {
+                                        <tr data-id="@item.product_id">
+                                            <td class="product-thumbnail"><a href="#"><img src="~/asset/vendor/img/product/@item.img" alt="product1"></a></td>
+                                            <td class="product-name" data-title="Product"><a href="#">@item.name</a></td>
+                                            <td class="product-price" data-title="Price">@String.Format(currency, "{0:c0}", item.price)</td>
+                                            <td class="product-quantity" data-title="Quantity">
+                                                <div class="quantity">
+                                                    <input type="button" value="-" class="minus">
+                                                    <input type="text" name="quantity" value="@item.quantity" title="Qty" class="qty" size="4">
+                                                    <input type="button" value="+" class="plus">
+                                                </div>
+                                            </td>
+                                            <td class="product-subtotal" data-title="Total">@String.Format(currency, "{0:c0}", item.total)</td>
+                                            <td class="product-remove" data-title="Remove"><a href="#"><i class="ti-close"></i></a></td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr><td colspan="5" class="font-weight-bold text-left text-muted">Giỏ hàng rỗng.</td></tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="medium_divider"></div>
+                    <div class="divider center_icon"><i class="ti-shopping-cart-full"></i></div>
+                    <div class="medium_divider"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="border p-3 p-md-4">
+                        <div class="heading_s1 mb-3">
+                            <h6>Cart Totals</h6>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td class="cart_total_label">Số tiền gốc</td>
+                                        <td class="cart_total_amount font-weight-bold">@String.Format(currency, "{0:c0}", CartHelper.sum())</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="cart_total_label">Phụ phí</td>
+                                        <td class="cart_total_amount">Free Shipping</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="cart_total_label">Tổng</td>
+                                        <td class="cart_total_amount text-danger font-weight-bold">@String.Format(currency, "{0:c0}", CartHelper.sum())</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <a href="#" class="btn btn-fill-out">Proceed To CheckOut</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END SECTION SHOP -->
+</div>
+<script>
+    $(document).on("click", ".minus, .plus", function () {
+        var quantity = $(this).closest("div").find("input:text").val();
+        var button = $(this);
+        var id = $(this).closest("tr").attr("data-id");
+        $.ajax({
+            url: "@Url.Action("Quantity", "Cart")",
+            type: "get",
+            data: {
+                id: id,
+                quantity: quantity
+            },
+            dataType:"json",
+            success: function (response) {
+                if (response.status == true) {
+                    button.closest("tr").find(".product-subtotal").html(response.total);
+                    $(".cart_total_amount").get(0).innerHTML = response.totalCart;
+                    $(".cart_total_amount").get(2).innerHTML = response.totalCart;
+                } else {
+                    location.reload();
+                }
+            }
+        });
+    })
+
+    $(document).on("click", ".product-remove .ti-close", function () {
+        var tr = $(this).closest("tr");
+        var id = tr.attr("data-id");
+        var button = $(this);
+         $.ajax({
+            url: "@Url.Action("RemoveOne", "Cart")",
+            type: "get",
+            data: {
+                id: id,
+            },
+            dataType:"json",
+             success: function (response) {
+                 if (response == false) {
+                     location.reload();
+                 } else {
+                     tr.remove();
+                 }
+            }
+        });
+    })
+</script>
+
+

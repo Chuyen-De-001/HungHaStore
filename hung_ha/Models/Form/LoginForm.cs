@@ -24,7 +24,7 @@ namespace hung_ha.Models.Form
             try
             {
                 string password = PasswordHelper.MD5(this.password) ;
-                var user = context.tblUser.Where(s => s.username == this.username && s.password == password).Single();
+                var user = context.tblUsers.Where(s => s.username == this.username && s.password == password).Single();
                 if (user != null)
                 {
                     AuthorHelper.setIdentity(user);
