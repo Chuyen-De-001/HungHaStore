@@ -158,7 +158,7 @@ D:\Visual Studio 2019\source\HungHaStore\hung_ha\bin\System.Web.WebPages.Razor.x
 D:\Visual Studio 2019\source\HungHaStore\hung_ha\bin\Newtonsoft.Json.xml
 D:\Visual Studio 2019\source\HungHaStore\hung_ha\bin\Antlr3.Runtime.pdb
 D:\Visual Studio 2019\source\HungHaStore\hung_ha\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\Visual Studio 2019\source\HungHaStore\hung_ha\obj\Debug\hung_ha.csproj.AssemblyReference.cache
 D:\Visual Studio 2019\source\HungHaStore\hung_ha\obj\Debug\hung_ha.csproj.CoreCompileInputs.cache
 D:\Visual Studio 2019\source\HungHaStore\hung_ha\obj\Debug\hung_ha.dll
 D:\Visual Studio 2019\source\HungHaStore\hung_ha\obj\Debug\hung_ha.pdb
+D:\Visual Studio 2019\source\HungHaStore\hung_ha\obj\Debug\hung_ha.csproj.AssemblyReference.cache

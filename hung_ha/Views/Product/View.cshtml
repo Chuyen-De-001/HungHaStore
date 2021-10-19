@@ -1,7 +1,7 @@
 ﻿@using hung_ha.Models.DbSet;
 @model hung_ha.Models.DbSet.tblProduct
 @{
-    ViewBag.Title = "View";
+    ViewBag.Title = "Thông tin";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="main_content">
@@ -129,7 +129,7 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <div class="product_info">
+                                                    <div class="product_info pb-5">
                                                         <h6 class="product_title"><a href="shop-product-detail.html">@item.name</a></h6>
                                                         <div class="product_price">
                                                             <span class="price">@String.Format("{0:C0}", item.price) đ</span>
@@ -139,9 +139,6 @@
                                                                 <div class="product_rate" style="width:80%"></div>
                                                             </div>
                                                             <span class="rating_num">(21)</span>
-                                                        </div>
-                                                        <div class="pr_desc">
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc id varius nunc.</p>
                                                         </div>
                                                     </div>
                                                 </div>

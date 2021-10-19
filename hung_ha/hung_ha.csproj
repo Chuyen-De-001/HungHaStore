@@ -129,7 +129,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -140,6 +139,7 @@
     <Compile Include="helpers\AlertHelper.cs" />
     <Compile Include="helpers\AuthorHelper.cs" />
     <Compile Include="helpers\CartHelper.cs" />
+    <Compile Include="helpers\PagingHelper.cs" />
     <Compile Include="helpers\PasswordHelper.cs" />
     <Compile Include="helpers\TimeHelper.cs" />
     <Compile Include="Models\DAO\User.cs" />
@@ -2460,6 +2460,7 @@
     <Content Include="Views\Product\View.cshtml" />
     <Content Include="Views\Cart\Add.cshtml" />
     <Content Include="Views\Cart\ViewCart.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\ViewModel\" />

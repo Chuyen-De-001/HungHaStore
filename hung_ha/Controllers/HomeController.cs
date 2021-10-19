@@ -8,6 +8,8 @@ namespace hung_ha.Controllers
         public ActionResult Index()
         {
             var model = Product.findLimit();
+            var listMostView = Product.findByView();
+            ViewBag.listMostView = listMostView;
             return View(model);
         }
 

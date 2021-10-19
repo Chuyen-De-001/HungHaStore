@@ -182,7 +182,7 @@ insert into tblProduct (name,category_id,description,price,created_at,img) value
 
 
 
-select * from tblProduct limit 20
+select * from tblProduct limit 0,20
 
 select * limit 20 from tblProduct
 
@@ -195,3 +195,30 @@ insert into tblUsers (username,password,email,role,created_at) values ('hai12345
 ALTER TABLE tblProduct ADD views int NOT NULL DEFAULT 0;
 
 ALTER TABLE tblProduct ADD sale int NOT NULL DEFAULT 0;
+
+
+SELECT * FROM ( SELECT *, ROW_NUMBER() OVER (ORDER BY name) as row FROM tblProduct ) a inner join tblProductCategory on a.category_id = tblProductCategory.id WHERE row <= 10 and (a.name like '%bàn%' or tblProductCategory.name like '%bàn%')
+
+
+
+
+select * from tblProduct inner join tblProductCategory on tblProduct.category_id = tblProductCategory.id where row <= 10 and (tblProduct.name like '%bàn%' or tblProductCategory.name like '%bàn%')
+
+
+SELECT * FROM ( SELECT *, ROW_NUMBER() OVER (ORDER BY name) as row FROM tblProduct ) a inner join tblProductCategory on a.category_id = tblProductCategory.id where row > 0 and row <= 20 and (a.name like N'%giá sách%' or tblProductCategory.name like N'%giá sách%')
+
+
+SELECT * FROM ( SELECT *, ROW_NUMBER() OVER (ORDER BY name) as row FROM tblProduct ) a inner join tblProductCategory on a.category_id = tblProductCategory.id where a.name like '%giá sách%'
+
+select * from tblProduct inner join tblProductCategory on tblProduct.category_id = tblProductCategory.id where tblProduct.name like '%giá sách%' or tblProductCategory.name like '%giá sách%' order by tblProduct.id offset 10 ROWS FETCH FIRST 5 ROWS ONLY;
+
+
+select COUNT(*) from tblProduct inner join tblProductCategory on tblProduct.category_id = tblProductCategory.id where tblProduct.name like '%giá sách%' or tblProductCategory.name like '%giá sách%';
+
+
+
+select count(*) from tblProduct inner join tblProductCategory on tblProduct.category_id = tblProductCategory.id WHERE tblProduct.name like '%giá sách%' or tblProductCategory.name like 'giá sách';
+
+select * from tblProduct inner join tblProductCategory on tblProduct.category_id = tblProductCategory.id where tblProduct.name like '%Kệ sách%' or tblProductCategory.name like '%Kệ sách%' order by tblProduct.id offset 0 ROWS FETCH FIRST 9 ROWS ONLY;
+
+select * from tblProduct inner join tblProductCategory on tblProduct.category_id = tblProductCategory.id where tblProduct.name like N'%giường%' or tblProductCategory.name like N'%giường%' order by tblProduct.id offset 0 ROWS FETCH FIRST 9 ROWS ONLY;
