@@ -5,27 +5,30 @@ using System.Web;
 using hung_ha.Models.DAO;
 using hung_ha.Models.DbSet;
 using System.Web.Mvc;
+using hung_ha.helpers;
 
 namespace hung_ha.Controllers
 {
     public class ProductController:Controller
     {
         // GET: Product
-        public ActionResult Index(string search = "", int page = 1, int pageSize = 9, int category_id = 0)
+        public ActionResult Index(string search = "", int page = 1, int pageSize = 30, int category_id = 0,int ajax = 0)
         {
             List<tblProduct> model;
             if(search != "")
             {
                 model = Product.findByPaging(page, pageSize, search);
-                ViewBag.Total = (int)Product.totalElement(search);
+                ViewBag.TotalElemet= (int)Product.totalElement(search);
             }
             else
             {
                 model = Product.findByPaging(page, pageSize, search);
-                ViewBag.Total = (int)Product.totalElement();
+                ViewBag.TotalElemet = (int)Product.totalElement();
             }
-            ViewBag.Page = page;
+
+            ViewBag.Page = (int)page;
             ViewBag.PageSize = pageSize;
+            ViewBag.TotalPage = PagingHelper.getPageCount(ViewBag.TotalElemet, ViewBag.PageSize);
             ViewBag.Search = search;
             return View(model);
         }

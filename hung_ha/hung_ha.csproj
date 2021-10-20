@@ -131,6 +131,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PagtionController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -146,6 +147,7 @@
     <Compile Include="Models\DbSet\cart.cs" />
     <Compile Include="Models\DAO\Product.cs" />
     <Compile Include="Models\DbSet\Model1.cs" />
+    <Compile Include="Models\DbSet\Pagtion.cs" />
     <Compile Include="Models\DbSet\tblInfo.cs" />
     <Compile Include="Models\DbSet\tblInvoice.cs" />
     <Compile Include="Models\DbSet\tblProduct.cs" />
@@ -2462,10 +2464,12 @@
     <Content Include="Views\Cart\Add.cshtml" />
     <Content Include="Views\Cart\ViewCart.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Base\View.cshtml" />
+    <Content Include="Views\Shared\_Paging.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\ViewModel\" />
-    <Folder Include="Views\Base\" />
+    <Folder Include="Views\Pagtion\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

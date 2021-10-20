@@ -1,0 +1,41 @@
+﻿@using hung_ha.Models.DbSet;
+@{
+    Pagtion model = new Pagtion(ViewBag.Paging.currentPage, ViewBag.Paging.pageSize, ViewBag.Paging.totalPage);
+    int beginPaging = 0;
+    int endPaging = 0;
+    int countSize = 0;
+    if (model.currentPage <= 10)
+    {
+        beginPaging = 1;
+        endPaging = ViewBag.Paging.totalPage;
+    }
+    else
+    {
+        endPaging = ViewBag.Page;
+        beginPaging = endPaging - 10;
+    }
+}
+@if (model.currentPage > 5)
+{
+    <li class="page-item"><a class="page-link" href="@Url.Action("Index", "Product", new { page = model.currentPage - 1, pageSize = ViewBag.PageSize, search = ViewBag.Search })"><i class="linearicons-arrow-left"></i></a></li>
+}
+@for (int i = beginPaging; i <= endPaging; i++)
+{
+    if (i == ViewBag.Page)
+    {
+        <li class="page-item active"><a class="page-link" href="@Url.Action("Index", "Product", new { page = i, pageSize = ViewBag.PageSize, search = ViewBag.Search })">@i</a></li>
+    }
+    else
+    {
+        <li class="page-item"><a class="page-link" href="@Url.Action("Index", "Product", new { page = i, pageSize = ViewBag.PageSize, search = ViewBag.Search })">@i</a></li>
+    }
+}
+@if (model.currentPage < (model.totalPage - 5))
+{
+    <li class="page-item">
+        <a class="page-link" href="@Url.Action("Index", "Product", new { page = model.currentPage + 1, pageSize = ViewBag.PageSize, search = ViewBag.Search })">
+            <i }
+               class="linearicons-arrow-right"></i>
+        </a>
+    </li>
+}
