@@ -33,6 +33,12 @@ namespace hung_ha.Controllers
             return View(model);
         }
 
+        public ActionResult List(int page = 1, int pageSize = 12)
+        {
+            var model = Product.findAllPageList(page, pageSize);
+            return View(model);
+        }
+
         public ActionResult View(int id)
         {
             try

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using hung_ha.Models.DbSet;
+using PagedList;
 
 namespace hung_ha.Models.DAO
 {
@@ -96,6 +97,17 @@ namespace hung_ha.Models.DAO
 
             }
             return 0;
+        }
+
+
+        public static IEnumerable<tblProduct> findAllPageList(int page, int pageSize)
+        {
+            try
+            {
+                var list = context.tblProducts.SqlQuery("select * from tblProduct").ToPagedList(page, pageSize);
+                return list;
+            }catch(Exception e) { }
+            return null;
         }
     }
 }

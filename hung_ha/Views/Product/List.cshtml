@@ -1,0 +1,72 @@
+﻿@model PagedList.IPagedList<hung_ha.Models.DbSet.tblProduct>
+@using PagedList.Mvc
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Danh mujc 
+        </th>
+        <th>
+            sdasd
+        </th>
+        <th>
+            gia
+        </th>
+        <th>
+            tg tao
+        </th>
+        <th>
+            img
+        </th>
+        <th>
+            view
+        </th>
+        <th>
+            sale
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.category_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.created_at)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.img)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.views)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sale)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+</table>
+<div class="pagination" style="margin-left: 400px">
+    @Html.PagedListPager(Model, page => Url.Action("List","Product",new {page}))
+</div>
