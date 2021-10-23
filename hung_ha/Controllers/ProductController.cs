@@ -12,18 +12,18 @@ namespace hung_ha.Controllers
     public class ProductController:Controller
     {
         // GET: Product
-        public ActionResult Index(string search = "", int page = 1, int pageSize = 15, int category_id = 0)
+        public ActionResult Index(string search = "", int page = 1, int pageSize = 15, string category_id = "")
         {
+
+            var listCategory = Category.findAll();
+            ViewBag.ListCategory = listCategory;
             IEnumerable<tblProduct> model;
-            model = Product.findAllPageList(page, pageSize, search);
+            string[] breadcrumb = {"Sản phẩm"};
+            ViewBag.Breadcrumb = breadcrumb;
+            model = Product.findAllPageList(page, pageSize, search,category_id);
             ViewBag.PageSize = pageSize;
             ViewBag.Search = search;
-            return View(model);
-        }
-
-        public ActionResult List(int page = 1, int pageSize = 12)
-        {
-            var model = Product.findAllPageList(page, pageSize);
+            ViewBag.CategoryId = category_id;
             return View(model);
         }
 

@@ -64,15 +64,20 @@ namespace hung_ha.Models.DAO
             return null;
         }
 
-        public static IEnumerable<tblProduct> findAllPageList(int page, int pageSize,string search ="")
+        public static IEnumerable<tblProduct> findAllPageList(int page, int pageSize,string search ="",string category_id="")
         {
             try
             {
 
-                string query = "select * from tblProduct inner join tblProductCategory on tblProduct.category_id = tblProductCategory.id";
-                if(search != "")
+                string query = "select * from tblProduct inner join tblProductCategory on tblProduct.category_id = tblProductCategory.id where 1 = 1";
+                if (search != "")
                 {
-                    query += " where tblProductCategory.name like N'%"+search+ "%' or tblProduct.name like N'%"+search+"%'";
+                    query += "and ( tblProductCategory.name like N'%" + search + "%' or tblProduct.name like N'%" + search + "%' )";
+                }
+
+                if (category_id != "")
+                {
+                    query += " and tblProduct.category_id = " + category_id;
                 }
                 var list = context.tblProducts.SqlQuery(query).ToPagedList(page, pageSize);
                 return list;

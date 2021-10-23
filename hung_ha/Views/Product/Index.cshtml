@@ -36,10 +36,10 @@
                                                     <option @{selected = ViewBag.PageSize == 240 ? "selected" : "";} @selected>240</option>
                                                 </select>
                                                 <script>
-                                                        $(document).on("change", "#pagesize", function () {
-                                                            var pageSize = $(this).val();
-                                                            window.location = "@Url.Action("Index","Product", new { search = search, page = 1})&pageSize=" + pageSize;
-                                                        })
+                                                    $(document).on("change", "#pagesize", function () {
+                                                        var pageSize = $(this).val();
+                                                        window.location = "@Url.Action("Index","Product", new { search = search, page = 1, category_id = ViewBag.CategoryId})&pageSize=" + pageSize;
+                                                    })
                                                 </script>
                                             </div>
                                             <div class="col-auto my-1">
@@ -113,17 +113,17 @@
                 <div class="col-lg-3 order-lg-first mt-4 pt-2 mt-lg-0 pt-lg-0">
                     <div class="sidebar">
                         <div class="widget">
-                            <h5 class="widget_title">Categories</h5>
+                            <h5 class="widget_title">Danh mục sản phẩm</h5>
                             <ul class="widget_categories">
-                                <li><a href="#"><span class="categories_name">Women</span><span class="categories_num">(9)</span></a></li>
-                                <li><a href="#"><span class="categories_name">Top</span><span class="categories_num">(6)</span></a></li>
-                                <li><a href="#"><span class="categories_name">T-Shirts</span><span class="categories_num">(4)</span></a></li>
-                                <li><a href="#"><span class="categories_name">Men</span><span class="categories_num">(7)</span></a></li>
-                                <li><a href="#"><span class="categories_name">Shoes</span><span class="categories_num">(12)</span></a></li>
+                                @foreach (tblProductCategory item in ViewBag.ListCategory)
+                                {
+                                    <li><a href="@Url.Action("Index","Product",new { category_id = item.id})"><span class="categories_name">@item.name</span></a></li>
+                                }
+
                             </ul>
                         </div>
                         <div class="widget">
-                            <h5 class="widget_title">Brand</h5>
+                            <h5 class="widget_title">Khoảng giá</h5>
                             <ul class="list_brand">
                                 <li>
                                     <div class="custome-checkbox">
