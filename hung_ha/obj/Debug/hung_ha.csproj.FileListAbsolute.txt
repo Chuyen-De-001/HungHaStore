@@ -166,3 +166,7 @@ D:\Visual Studio 2019\source\HungHaStore\hung_ha\bin\PagedList.dll
 D:\Visual Studio 2019\source\HungHaStore\hung_ha\bin\PagedList.Mvc.dll
 D:\Visual Studio 2019\source\HungHaStore\hung_ha\bin\PagedList.xml
 D:\Visual Studio 2019\source\HungHaStore\hung_ha\bin\PagedList.Mvc.xml
+C:\Users\mitto\source\repos\hung_ha\hung_ha\bin\PagedList.dll
+C:\Users\mitto\source\repos\hung_ha\hung_ha\bin\PagedList.Mvc.dll
+C:\Users\mitto\source\repos\hung_ha\hung_ha\bin\PagedList.xml
+C:\Users\mitto\source\repos\hung_ha\hung_ha\bin\PagedList.Mvc.xml

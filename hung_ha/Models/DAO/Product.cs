@@ -64,47 +64,17 @@ namespace hung_ha.Models.DAO
             return null;
         }
 
-        public static List<tblProduct> findByPaging(int page, int pageSize,string search)
+        public static IEnumerable<tblProduct> findAllPageList(int page, int pageSize,string search ="")
         {
-            int listCount = Product.totalElement(search);
-            int begin = (page - 1) * pageSize;
             try
             {
-                string sql = "select * from tblProduct inner join tblProductCategory on tblProduct.category_id = tblProductCategory.id where tblProduct.name like N'%"+search+"%' or tblProductCategory.name like N'%"+search+"%' order by tblProduct.id offset "+begin+" ROWS FETCH FIRST "+pageSize+" ROWS ONLY;";
-                var list = context.tblProducts.SqlQuery(sql).ToList();
-                return list;
-            }
-            catch (Exception e) { }
-            return null;
-        }
 
-        public static int totalElement(string search = "")
-        {
-            try
-            {
-                string where = "";
-                string select = "select * from tblProduct inner join tblProductCategory on tblProduct.category_id = tblProductCategory.id";
-                if (search != "")
+                string query = "select * from tblProduct inner join tblProductCategory on tblProduct.category_id = tblProductCategory.id";
+                if(search != "")
                 {
-                    where = " WHERE tblProduct.name like N'%"+search+"%' or tblProductCategory.name like N'" + search + "';";
+                    query += " where tblProductCategory.name like N'%"+search+ "%' or tblProduct.name like N'%"+search+"%'";
                 }
-                string sql = select + where;
-                var count = context.tblProducts.SqlQuery(sql).Count();
-                return count;
-            }
-            catch(Exception e)
-            {
-
-            }
-            return 0;
-        }
-
-
-        public static IEnumerable<tblProduct> findAllPageList(int page, int pageSize)
-        {
-            try
-            {
-                var list = context.tblProducts.SqlQuery("select * from tblProduct").ToPagedList(page, pageSize);
+                var list = context.tblProducts.SqlQuery(query).ToPagedList(page, pageSize);
                 return list;
             }catch(Exception e) { }
             return null;

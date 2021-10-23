@@ -1,6 +1,7 @@
 ﻿@using hung_ha.Models.DbSet;
 @using hung_ha.helpers;
-@model List<tblProduct>
+@model PagedList.IPagedList<hung_ha.Models.DbSet.tblProduct>
+@using PagedList.Mvc
 @{
     ViewBag.Title = "Danh sách";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -26,20 +27,20 @@
                                             </div>
                                             <div class="col-auto my-1">
                                                 @{ string selected = ""; }
-                                                    <select class="custom-select mr-sm-2" id="pagesize" name="pageSize">
-                                                        <option @{selected = ViewBag.PageSize == 9 ? "selected" : "";} @selected>9</option>
-                                                        <option @{selected = ViewBag.PageSize == 15 ? "selected" : "";} @selected>15</option>
-                                                        <option @{selected = ViewBag.PageSize == 30 ? "selected" : "";} @selected>30</option>
-                                                        <option @{selected = ViewBag.PageSize == 60 ? "selected" : "";} @selected>60</option>
-                                                        <option @{selected = ViewBag.PageSize == 120 ? "selected" : "";} @selected>120</option>
-                                                        <option @{selected = ViewBag.PageSize == 240 ? "selected" : "";} @selected>240</option>
-                                                    </select>
-                                                    <script>
+                                                <select class="custom-select mr-sm-2" id="pagesize" name="pageSize">
+                                                    <option @{selected = ViewBag.PageSize == 9 ? "selected" : "";} @selected>9</option>
+                                                    <option @{selected = ViewBag.PageSize == 15 ? "selected" : "";} @selected>15</option>
+                                                    <option @{selected = ViewBag.PageSize == 30 ? "selected" : "";} @selected>30</option>
+                                                    <option @{selected = ViewBag.PageSize == 60 ? "selected" : "";} @selected>60</option>
+                                                    <option @{selected = ViewBag.PageSize == 120 ? "selected" : "";} @selected>120</option>
+                                                    <option @{selected = ViewBag.PageSize == 240 ? "selected" : "";} @selected>240</option>
+                                                </select>
+                                                <script>
                                                         $(document).on("change", "#pagesize", function () {
                                                             var pageSize = $(this).val();
                                                             window.location = "@Url.Action("Index","Product", new { search = search, page = 1})&pageSize=" + pageSize;
                                                         })
-                                                    </script>
+                                                </script>
                                             </div>
                                             <div class="col-auto my-1">
                                                 <span>sản phẩm / trang</span>
@@ -51,14 +52,6 @@
                                     <div class="products_view">
                                         <a href="javascript:Void(0);" class="shorting_icon grid active"><i class="ti-view-grid"></i></a>
                                         <a href="javascript:Void(0);" class="shorting_icon list"><i class="ti-layout-list-thumb"></i></a>
-                                    </div>
-                                    <div class="custom_select">
-                                        <select class="form-control form-control-sm first_null not_chosen">
-                                            <option value="">Showing</option>
-                                            <option value="9">9</option>
-                                            <option value="12">12</option>
-                                            <option value="18">18</option>
-                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -110,10 +103,10 @@
 
                     </div>
                     <div class="row">
-                        <div class="col-12">
-                            <ul class="pagination mt-3 justify-content-center pagination_style1">
-                                @RenderPage("~/Views/Shared/_Paging.cshtml",ViewBag.Paging = new Pagtion(ViewBag.Page, ViewBag.PageSize, ViewBag.TotalPage))
-                            </ul>
+                        <div class="col">
+                            <div class="pagination justify-content-md-center">
+                                @Html.PagedListPager(Model, page => Url.Action("Index", "Product", new { page,search,pageSize=ViewBag.PageSize }))
+                            </div>
                         </div>
                     </div>
                 </div>

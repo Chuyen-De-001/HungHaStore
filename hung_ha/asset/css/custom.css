@@ -18,3 +18,19 @@ h1, h2, h3, h4, h5, h6 {
 .rating_wrap {
     float: left !important;
 }
+
+
+.pagination li {
+    border: solid 2px #b8b2b2;
+    margin: 2px;
+    padding:10px 0px;
+}
+
+.pagination li a{
+    padding:10px 20px;
+}
+
+.pagination .active {
+    background: darkcyan;
+    color: white;
+}

@@ -137,7 +137,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PagtionController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -146,7 +145,6 @@
     <Compile Include="helpers\AlertHelper.cs" />
     <Compile Include="helpers\AuthorHelper.cs" />
     <Compile Include="helpers\CartHelper.cs" />
-    <Compile Include="helpers\PagingHelper.cs" />
     <Compile Include="helpers\PasswordHelper.cs" />
     <Compile Include="helpers\TimeHelper.cs" />
     <Compile Include="Models\DAO\User.cs" />
