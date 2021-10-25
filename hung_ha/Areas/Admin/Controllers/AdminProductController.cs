@@ -8,7 +8,7 @@ using hung_ha.Models.DAO;
 
 namespace hung_ha.Areas.Admin.Controllers
 {
-    public class ProductController : Controller
+    public class AdminProductController : Controller
     {
         // GET: Admin/Product
         public ActionResult Index(int page = 1, int pageSize = 15, string search="")
