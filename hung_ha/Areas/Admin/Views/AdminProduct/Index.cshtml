@@ -1,0 +1,85 @@
+﻿@using PagedList.Mvc
+@using hung_ha.Models.DbSet;
+@model PagedList.IPagedList<hung_ha.Models.DbSet.tblProduct>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="row mb-3">
+    <div class="col">
+        <div class="form-row align-items-center">
+            <div class="col-auto my-1">
+                <div class="custom-control custom-checkbox mr-sm-2">
+                    <span>Hiện</span>
+                </div>
+            </div>
+            <div class="col-auto my-1">
+                <select class="custom-select mr-sm-2" id="pagesize" name="pageSize">
+                    <option>9</option>
+                    <option selected="">15</option>
+                    <option>30</option>
+                    <option>60</option>
+                    <option>120</option>
+                    <option>240</option>
+                </select>
+                <script>
+                    $(document).on("change", "#pagesize", function () {
+                        var pageSize = $(this).val();
+                        window.location = "/Product?search=b%C3%A0n%20%C4%83n%20&amp;page=1&pageSize=" + pageSize;
+                    })
+                </script>
+            </div>
+            <div class="col-auto my-1">
+                <span>sản phẩm / trang</span>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <form class="au-form-icon--sm float-right action="" method="post">
+            <input class="au-input--w300 au-input--style2" type="text" placeholder="Search for datas &amp; reports...">
+            <button class="au-btn--submit2" type="submit">
+                <i class="zmdi zmdi-search"></i>
+            </button>
+        </form>
+    </div>
+</div>
+<div class="table-responsive table--no-card m-b-30">
+    <table class="table table-borderless table-striped table-earning">
+        <thead>
+            <tr>
+                <th>Ảnh</th>
+                <th>Tên</th>
+                <th>Giá tiền</th>
+                <th>số lượt xem</th>
+                <th>Giảm giá</th>
+                <th>Quản lý</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (tblProduct item in Model)
+            {
+                <tr>
+                    <td><img src="~/asset/vendor/img/product/@item.img" width="100px" alt="Alternate Text" /></td>
+                    <td>@item.name</td>
+                    <td>@item.price</td>
+                    <td>@item.views</td>
+                    <td>@item.sale</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+</div>
+<div class="row">
+    <div class="col">
+        <div class="pagination justify-content-md-center">
+            @Html.PagedListPager(Model, page => Url.Action("Index", "Product", new { page = ViewBag.Page, search = ViewBag.Search, pageSize = ViewBag.PageSize }))
+        </div>
+    </div>
+</div>
