@@ -1,5 +1,8 @@
-﻿@{ 
+﻿@using hung_ha.helpers;
+@{ 
+    string currentAction = ViewContext.RouteData.Values["controller"].ToString();
     string[] breadcrumb = null;
+    string _class = "";
     try
     {
         breadcrumb = ViewBag.Breadcrumb;
@@ -39,9 +42,17 @@
     <!-- Main CSS-->
     <link href="~/Areas/Admin/asset/css/theme.css" rel="stylesheet" media="all">
 
+    <!-- Jquery JS-->
+    <script src="~/Areas/Admin/asset/vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="~/Areas/Admin/asset/vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="~/Areas/Admin/asset/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+
 </head>
 
 <body class="animsition">
+    <h1>@currentAction</h1>
     <div class="page-wrapper">
         <!-- HEADER DESKTOP-->
         <header class="header-desktop3 d-none d-lg-block">
@@ -49,56 +60,31 @@
                 <div class="header3-wrap">
                     <div class="header__logo">
                         <a href="#">
-                            <img src="images/icon/logo-white.png" alt="CoolAdmin" />
+                            <img src="~/asset/vendor/img/logo/logo.png" alt="CoolAdmin" />
                         </a>
                     </div>
                     <div class="header__navbar">
                         <ul class="list-unstyled">
-                            <li class="has-sub">
+                            <li class="@{_class = currentAction == "Site" ? "active" : ""; @_class}">
                                 <a href="#">
                                     <i class="fas fa-tachometer-alt"></i>Dashboard
                                     <span class="bot-line"></span>
                                 </a>
-                                <ul class="header3-sub-list list-unstyled">
-                                    <li>
-                                        <a href="index.html">Dashboard 1</a>
-                                    </li>
-                                    <li>
-                                        <a href="index2.html">Dashboard 2</a>
-                                    </li>
-                                    <li>
-                                        <a href="index3.html">Dashboard 3</a>
-                                    </li>
-                                    <li>
-                                        <a href="index4.html">Dashboard 4</a>
-                                    </li>
-                                </ul>
                             </li>
-                            <li>
+                            <li class="@{_class = currentAction == "tblProducts" ? "active" : ""; @_class}">
                                 <a href="#">
                                     <i class="fas fa-shopping-basket"></i>
-                                    <span class="bot-line"></span>eCommerce</a>
+                                    <span class="bot-line"></span>Sản phẩm</a>
                             </li>
                             <li>
                                 <a href="table.html">
                                     <i class="fas fa-trophy"></i>
-                                    <span class="bot-line"></span>Features</a>
+                                    <span class="bot-line"></span>Danh mục sản phẩm</a>
                             </li>
                             <li class="has-sub">
                                 <a href="#">
                                     <i class="fas fa-copy"></i>
-                                    <span class="bot-line"></span>Pages</a>
-                                <ul class="header3-sub-list list-unstyled">
-                                    <li>
-                                        <a href="login.html">Login</a>
-                                    </li>
-                                    <li>
-                                        <a href="register.html">Register</a>
-                                    </li>
-                                    <li>
-                                        <a href="forget-pass.html">Forget Password</a>
-                                    </li>
-                                </ul>
+                                    <span class="bot-line"></span>Kho</a>
                             </li>
                             <li class="has-sub">
                                 <a href="#">
@@ -224,7 +210,7 @@
                                     <img src="images/icon/avatar-01.jpg" alt="John Doe" />
                                 </div>
                                 <div class="content">
-                                    <a class="js-acc-btn" href="#">john doe</a>
+                                    <a class="js-acc-btn" href="#">@AuthorHelper.getIdentity().username</a>
                                 </div>
                                 <div class="account-dropdown js-dropdown">
                                     <div class="info clearfix">
@@ -237,7 +223,7 @@
                                             <h5 class="name">
                                                 <a href="#">john doe</a>
                                             </h5>
-                                            <span class="email">johndoe@example.com</span>
+                                            <span class="email">@AuthorHelper.getIdentity().username</span>
                                         </div>
                                     </div>
                                     <div class="account-dropdown__body">
@@ -288,20 +274,6 @@
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="index.html">Dashboard 1</a>
-                                </li>
-                                <li>
-                                    <a href="index2.html">Dashboard 2</a>
-                                </li>
-                                <li>
-                                    <a href="index3.html">Dashboard 3</a>
-                                </li>
-                                <li>
-                                    <a href="index4.html">Dashboard 4</a>
-                                </li>
-                            </ul>
                         </li>
                         <li>
                             <a href="chart.html">
@@ -507,48 +479,9 @@
 
         <!-- PAGE CONTENT-->
         <div class="page-content--bgf7">
-            <!-- BREADCRUMB-->
-            <section class="au-breadcrumb2">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="au-breadcrumb-content">
-                                <div class="au-breadcrumb-left">
-                                    <span class="au-breadcrumb-span">You are here:</span>
-                                    <ul class="list-unstyled list-inline au-breadcrumb__list">
-                                        <li class="list-inline-item active">
-                                            <a href="#">Home</a>
-                                        </li>
-                                        @if (breadcrumb != null)
-                                        {
-                                            foreach (string item in breadcrumb)
-                                            {
-                                                <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")">@item</a></li>
-                                            }
-                                        }
-                                    </ul>
-                                </div>
-                                <form class="au-form-icon--sm" action="" method="post">
-                                    <input class="au-input--w300 au-input--style2" type="text" placeholder="Search for datas &amp; reports...">
-                                    <button class="au-btn--submit2" type="submit">
-                                        <i class="zmdi zmdi-search"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- END BREADCRUMB-->
+
             <section class="p-t-5 p-b-5">
-                <div class="container">
-                    <div class="card">
-                        <h5 class="card-header">@ViewBag.Title</h5>
-                        <div class="card-body">
-                            @RenderBody()
-                        </div>
-                    </div>
-                </div>
+                @RenderBody()
             </section>
             
             <!-- COPYRIGHT-->
@@ -567,12 +500,6 @@
         </div>
     </div>
 
-    <!-- Jquery JS-->
-    <script src="~/Areas/Admin/asset/vendor/jquery-3.2.1.min.js"></script>
-    <!-- Bootstrap JS-->
-    <script src="~/Areas/Admin/asset/vendor/bootstrap-4.1/popper.min.js"></script>
-    <script src="~/Areas/Admin/asset/vendor/bootstrap-4.1/bootstrap.min.js"></script>
-    <!-- Vendor JS       -->
     <script src="~/Areas/Admin/asset/vendor/slick/slick.min.js">
     </script>
     <script src="~/Areas/Admin/asset/vendor/wow/wow.min.js"></script>

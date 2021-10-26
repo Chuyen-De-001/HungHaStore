@@ -1,0 +1,35 @@
+﻿@using hung_ha.Models.Form
+@model LoginForm
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_login.cshtml";
+}
+<div class="login-wrap">
+    <div class="login-content">
+        <div class="login-logo">
+            <a href="#">
+                <img src="~/asset/vendor/img/logo/logo.png" alt="CoolAdmin" style="padding: 10px; background: cadetblue">
+            </a>
+        </div>
+        <div class="login-form">
+            @using (Html.BeginForm())
+            {
+            <div class="form-group">
+                <label>Username</label>
+                @Html.TextBoxFor(model => model.username, new { @class = "form-control", @type = "text", @placeholder = "Nhập vào tài khoản.", })
+                @Html.ValidationMessageFor(model => model.username)
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                @Html.TextBoxFor(model => model.password, new { @class = "form-control", @type = "password", @placeholder = "Nhập vào mật khẩu.", })
+                @Html.ValidationMessageFor(model => model.password)
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-warning form-control" name="login">Đăng nhập</button>
+            </div>
+            }
+        </div>
+    </div>
+</div>
+

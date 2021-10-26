@@ -19,8 +19,8 @@ namespace hung_ha.Models.DAO
                 list = context.tblProductCategories.ToList();
                 return list;
             }
-            catch(Exception e)
-            {}
+            catch (Exception e)
+            { }
             return null;
         }
     }

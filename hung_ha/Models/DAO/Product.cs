@@ -68,7 +68,6 @@ namespace hung_ha.Models.DAO
         {
             try
             {
-
                 string query = "select * from tblProduct inner join tblProductCategory on tblProduct.category_id = tblProductCategory.id where 1 = 1";
                 if (search != "")
                 {

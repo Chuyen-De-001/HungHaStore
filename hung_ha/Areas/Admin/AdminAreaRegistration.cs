@@ -17,7 +17,7 @@ namespace hung_ha.Areas.Admin
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new {controller="Site", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
