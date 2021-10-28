@@ -21,6 +21,7 @@ namespace hung_ha.Areas.Admin.Controllers
         public ActionResult Index(int page=1,int pageSize = 20, string search = "")
         {
             IEnumerable<tblProduct> tblProducts = Product.findAllPageList(page,pageSize,search);
+            ViewBag.Title = "Danh sách sản phẩm";
             ViewBag.Search = search;
             ViewBag.Page = page;
             ViewBag.PageSize = pageSize;
@@ -88,10 +89,14 @@ namespace hung_ha.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,name,category_id,description,price,created_at,img,views,sale")] tblProduct tblProduct)
+        public ActionResult Edit([Bind(Include = "id,name,category_id,description,price,created_at,img,views,sale")] tblProduct tblProduct,HttpPostedFileBase fileImg)
         {
             if (ModelState.IsValid)
             {
+                if(fileImg != null && fileImg.ContentLength > 0)
+                {
+                    
+                }
                 db.Entry(tblProduct).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

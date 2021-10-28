@@ -1,0 +1,99 @@
+﻿@using PagedList.Mvc
+@using hung_ha.helpers;
+@using hung_ha.Models.DbSet;
+@model PagedList.IPagedList<hung_ha.Models.DbSet.tblProductCategory>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            @ViewBag.Title
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col mb-3">
+                    <div class="form-row align-items-center">
+                        <div class="col-auto my-1">
+                            <div class="custom-control custom-checkbox mr-sm-2">
+                                <span>Hiện</span>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <select class="custom-select mr-sm-2" id="pagesize" name="pageSize">
+                                <option>9</option>
+                                <option selected="">15</option>
+                                <option>30</option>
+                                <option>60</option>
+                                <option>120</option>
+                                <option>240</option>
+                            </select>
+                        </div>
+                        <div class="col-auto my-1">
+                            <span>sản phẩm / trang</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-3">
+                    <form class="au-form-icon--sm float-right action=" " ="" method="post">
+                        <input class="au-input--w300 au-input--style2" type="text" placeholder="Search for datas &amp; reports...">
+                        <button class="au-btn--submit2" type="submit">
+                            <i class="zmdi zmdi-search"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="col mb-3">
+                    <a class="btn btn-info float-right text-white p-2" href="/Admin/tblProducts/Create"><i class="fas fa-plus"></i> Thêm sản phẩm mới</a>
+                </div>
+            </div>
+            <div class="table-responsive table--no-card m-b-30">
+                <table class="table table-borderless table-striped table-earning">
+                    <thead>
+                        <tr>
+                            <th>Mã</th>
+                            <th>Tên loại SP</th>
+                            <th>Thời gian tạo</th>
+                            <th>Quản lý</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.name)
+                                </td>
+                                <td>
+                                    @DateHelper.UnixTimeStampToDateTime(item.created_at)
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Edit", new { id = item.id })"><i class="fas fa-edit"></i></a>
+                                    <a href="@Url.Action("Details", new { id = item.id })"><i class="fas fa-eye"></i></a>
+                                    <a href="@Url.Action("Delete", new { id = item.id })"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="pagination justify-content-md-center">
+                        @Html.PagedListPager(Model, page => Url.Action("Index", "tblProducts", new { page, search = ViewBag.Seach, pageSize = ViewBag.PageSize }))
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).on("change", "#pagesize", function () {
+        var pageSize = $(this).val();
+        window.location = "/Admin/tblProducts?page=1&pageSize=" + pageSize;
+    })
+</script>
+

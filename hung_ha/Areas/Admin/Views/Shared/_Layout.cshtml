@@ -52,7 +52,6 @@
 </head>
 
 <body class="animsition">
-    <h1>@currentAction</h1>
     <div class="page-wrapper">
         <!-- HEADER DESKTOP-->
         <header class="header-desktop3 d-none d-lg-block">
@@ -60,24 +59,24 @@
                 <div class="header3-wrap">
                     <div class="header__logo">
                         <a href="#">
-                            <img src="~/asset/vendor/img/logo/logo.png" alt="CoolAdmin" />
+                            <img src="~/asset/vendor/img/logo/logo.png" alt="CoolAdmin" style="height:60px" />
                         </a>
                     </div>
                     <div class="header__navbar">
                         <ul class="list-unstyled">
                             <li class="@{_class = currentAction == "Site" ? "active" : ""; @_class}">
-                                <a href="#">
+                                <a href="@Url.Action("Index","Site")">
                                     <i class="fas fa-tachometer-alt"></i>Dashboard
                                     <span class="bot-line"></span>
                                 </a>
                             </li>
                             <li class="@{_class = currentAction == "tblProducts" ? "active" : ""; @_class}">
-                                <a href="#">
+                                <a href="@Url.Action("Index","tblProducts")">
                                     <i class="fas fa-shopping-basket"></i>
                                     <span class="bot-line"></span>Sản phẩm</a>
                             </li>
-                            <li>
-                                <a href="table.html">
+                            <li class="@{_class = currentAction == "tblProductCategories" ? "active" : ""; @_class}">
+                                <a href="@Url.Action("Index","tblProductCategories")">
                                     <i class="fas fa-trophy"></i>
                                     <span class="bot-line"></span>Danh mục sản phẩm</a>
                             </li>
