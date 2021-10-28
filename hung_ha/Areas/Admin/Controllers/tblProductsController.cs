@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using hung_ha.Models.DbSet;
 using hung_ha.Models.DAO;
 using hung_ha.helpers;
+using System.IO;
 
 namespace hung_ha.Areas.Admin.Controllers
 {
@@ -95,7 +96,9 @@ namespace hung_ha.Areas.Admin.Controllers
             {
                 if(fileImg != null && fileImg.ContentLength > 0)
                 {
-                    
+                    string _path = Path.Combine(Server.MapPath("~/asset/vendor/img/product"), fileImg.FileName);
+                    fileImg.SaveAs(_path);
+                    tblProduct.img = fileImg.FileName;
                 }
                 db.Entry(tblProduct).State = EntityState.Modified;
                 db.SaveChanges();

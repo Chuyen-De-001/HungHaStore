@@ -37,7 +37,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.TextAreaFor(model => model.description, new { @class = "form-control"})
                             @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -60,7 +60,7 @@
 
                     <div class="form-group">
 
-                        <img src="~/asset/vendor/img/product/@Html.DisplayFor(model => model.img)" alt="@Html.DisplayFor(model => model.img)" style="padding:0px 15px" />
+                        <img src="~/asset/vendor/img/product/@Html.DisplayFor(model => model.img)" id="img_product" alt="@Html.DisplayFor(model => model.img)" style="padding:0px 15px;max-height:200px" />
                         <br />
                         <div class="col-md-10">
 
@@ -100,3 +100,15 @@
         </div>
     </div>
 </div>
+<script>
+    /*$(document).on("change", "#fileImg", function () {
+        var filePath = $(this).val();
+        console.log(filePath);
+        $("#img_product").attr('src', filePath);
+    })*/
+    $(document).on("change", "#fileImg", function (event) {
+        var url_img = URL.createObjectURL(event.target.files[0]);
+        console.log(url_img);
+        $("#img_product").attr('src', url_img);
+    })
+</script>
