@@ -19,11 +19,14 @@ h1, h2, h3, h4, h5, h6 {
     float: left !important;
 }
 
+.pagination{
+    overflow:auto;
+}
 
 .pagination li {
     border: solid 2px #b8b2b2;
     margin: 2px;
-    padding:10px 0px;
+    padding: 10px 0px;
 }
 
 .pagination li a{
@@ -33,4 +36,13 @@ h1, h2, h3, h4, h5, h6 {
 .pagination .active {
     background: darkcyan;
     color: white;
+}
+
+.product_img{
+    height:250px;
+}
+
+.product_img img {
+    width:100%;
+
 }

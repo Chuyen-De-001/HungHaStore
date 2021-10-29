@@ -9,12 +9,14 @@ using hung_ha.Models.Form;
 using System.Web.Helpers;
 using hung_ha.helpers;
 using System.Web.Security;
+using System.Net;
 
 namespace hung_ha.Controllers
 {
     public class UserController : Controller
     {
         // GET: User
+        Model1 db = new Model1();
         public ActionResult Index()
         {
             return View();

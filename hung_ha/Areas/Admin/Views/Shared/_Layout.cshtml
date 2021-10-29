@@ -206,7 +206,7 @@
                         <div class="account-wrap">
                             <div class="account-item account-item--style2 clearfix js-item-menu">
                                 <div class="image">
-                                    <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                    <img src="~/asset/vendor/img/icon/avatar-01.jpg" alt="@AuthorHelper.getIdentity().username" />
                                 </div>
                                 <div class="content">
                                     <a class="js-acc-btn" href="#">@AuthorHelper.getIdentity().username</a>
@@ -215,7 +215,7 @@
                                     <div class="info clearfix">
                                         <div class="image">
                                             <a href="#">
-                                                <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                                <img src="~/asset/vendor/img/icon/avatar-01.jpg" alt="@AuthorHelper.getIdentity().username" />
                                             </a>
                                         </div>
                                         <div class="content">
@@ -240,7 +240,7 @@
                                         </div>
                                     </div>
                                     <div class="account-dropdown__footer">
-                                        <a href="#">
+                                        <a href="@Url.Action("Logout","Security")">
                                             <i class="zmdi zmdi-power"></i>Logout</a>
                                     </div>
                                 </div>
@@ -480,22 +480,17 @@
         <div class="page-content--bgf7">
 
             <section class="p-t-5 p-b-5">
+                @if (AlertHelper.isAlert())
+                {
+                    <div class="alert alert-@AlertHelper.get("type") alert-dismissible fade show mt-3" role="alert">
+                        @AlertHelper.get("message")
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
                 @RenderBody()
             </section>
-            
-            <!-- COPYRIGHT-->
-            <section class="p-t-60 p-b-20">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="copyright">
-                                <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- END COPYRIGHT-->
         </div>
     </div>
 

@@ -140,8 +140,10 @@
     <Compile Include="Areas\Admin\Controllers\SiteController.cs" />
     <Compile Include="Areas\Admin\Controllers\tblProductCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\tblProductsController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InfoesController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2299,6 +2301,7 @@
     <Content Include="asset\vendor\img\banner\banner-phu-kien-trang-tri-2.png" />
     <Content Include="asset\vendor\img\banner\banner11.jpg" />
     <Content Include="asset\vendor\img\banner\noi-that-banner.jpg" />
+    <Content Include="asset\vendor\img\icon\avatar-01.jpg" />
     <Content Include="asset\vendor\img\icon\dam-bao.png" />
     <Content Include="asset\vendor\img\icon\vat-lieu.png" />
     <Content Include="asset\vendor\img\icon\y-tuong.png" />
@@ -2801,6 +2804,11 @@
     <Content Include="Views\Base\View.cshtml" />
     <Content Include="Views\Shared\_Paging.cshtml" />
     <Content Include="Views\Product\List.cshtml" />
+    <Content Include="Views\Infoes\Create.cshtml" />
+    <Content Include="Views\Infoes\Delete.cshtml" />
+    <Content Include="Views\Infoes\Details.cshtml" />
+    <Content Include="Views\Infoes\Edit.cshtml" />
+    <Content Include="Views\Infoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Views\Base\" />

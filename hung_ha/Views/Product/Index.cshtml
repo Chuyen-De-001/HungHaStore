@@ -3,6 +3,8 @@
 @model PagedList.IPagedList<hung_ha.Models.DbSet.tblProduct>
 @using PagedList.Mvc
 @{
+    var currency = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+    string _active = "";
     ViewBag.Title = "Danh sách";
     Layout = "~/Views/Shared/_Layout.cshtml";
     string search = ViewBag.Search;
@@ -68,19 +70,24 @@
                                         </a>
                                         <div class="product_action_box">
                                             <ul class="list_none pr_action_btn">
-                                                <li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
+                                                <li class="add-to-cart"><a href="javascript::void(0)"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
                                                 <li><a href="@Url.Action("View", "Product", new { id = item.id })"><i class="icon-magnifier-add"></i></a></li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="product_info">
-                                        <h6 class="product_title"><a href="shop-product-detail.html">@item.name</a></h6>
+                                        <h6 class="product_title"><a href="@Url.Action("View", "Product", new { id = item.id })">@item.name</a></h6>
                                         <div class="product_price">
-                                            <span class="price">$45.00</span>
-                                            <del>$55.25</del>
-                                            <div class="on_sale">
-                                                <span>35% Off</span>
-                                            </div>
+                                            @if (item.sale < 1)
+                                            {
+                                            <span class="price">@String.Format(currency, "{0:c}", item.price)</span>
+                                            }else{
+                                                <span class="price">$45.00</span>
+                                                <del>@String.Format(currency, "{0:c}", item.price)</del>
+                                                <div class="on_sale">
+                                                    <span>@item.sale % Off</span>
+                                                </div>
+                                            }
                                         </div>
                                         <div class="clearfix"></div>
                                         <div class="rating_wrap mb-3">
@@ -92,7 +99,7 @@
                                         <div class="clearfix"></div>
                                         <div class="list_product_action_box">
                                             <ul class="list_none pr_action_btn">
-                                                <li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
+                                                <li class="add-to-cart"><a href="javascript::void()"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
                                                 <li><a href="@Url.Action("View", "Product", new { id = item.id })"><i class="icon-magnifier-add"></i></a></li>
                                             </ul>
                                         </div>
@@ -119,7 +126,6 @@
                                 {
                                     <li><a href="@Url.Action("Index","Product",new { category_id = item.id})"><span class="categories_name">@item.name</span></a></li>
                                 }
-
                             </ul>
                         </div>
                         <div class="widget">

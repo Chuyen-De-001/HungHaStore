@@ -416,3 +416,6 @@ select count(*) from tblProduct inner join tblProductCategory on tblProduct.cate
 select * from tblProduct inner join tblProductCategory on tblProduct.category_id = tblProductCategory.id where tblProduct.name like '%Kệ sách%' or tblProductCategory.name like '%Kệ sách%' order by tblProduct.id offset 0 ROWS FETCH FIRST 9 ROWS ONLY;
 
 select * from tblProduct inner join tblProductCategory on tblProduct.category_id = tblProductCategory.id where tblProduct.name like N'%giường%' or tblProductCategory.name like N'%giường%' order by tblProduct.id offset 0 ROWS FETCH FIRST 9 ROWS ONLY;
+
+
+select * from tblProduct where name like N'Kệ góc bằng gỗ MDF kết cấu chắc chắn GHS-2400'

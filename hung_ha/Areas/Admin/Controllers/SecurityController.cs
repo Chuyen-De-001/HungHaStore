@@ -50,5 +50,12 @@ namespace hung_ha.Areas.Admin.Controllers
                 return View();
             }
         }
+
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            AuthorHelper.removeIdentity();
+            return RedirectToAction("Login","Security");
+        }
     }
 }

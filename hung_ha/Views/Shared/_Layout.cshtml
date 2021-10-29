@@ -2,13 +2,15 @@
 @using hung_ha.Models.DbSet;
 @{ 
     var currency = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+    string currentAction = ViewContext.RouteData.Values["controller"].ToString();
+    string _active = "";
     string[] breadcrumb = null;
     List<cart> listCart = CartHelper.list();
     try
     {
         breadcrumb = ViewBag.Breadcrumb;
     }
-    catch(Exception e) {}
+    catch (Exception e) { }
 }
 <!DOCTYPE html>
 <html>
@@ -70,7 +72,7 @@
                                                 <i class="fas fa-user"></i>@AuthorHelper.getIdentity().username
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="#"><i class="fas fa-info-circle"></i> Thông tin</a>
+                                                <a class="dropdown-item" href="@Url.Action("Index","Infoes")"><i class="fas fa-info-circle"></i> Thông tin</a>
                                                 <a class="dropdown-item" href="#"><i class="fas fa-key"></i> Đổi mật khẩu</a>
                                                 <div class="dropdown-divider"></div>
                                                 <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
@@ -89,7 +91,7 @@
         <div class="bottom_header dark_skin main_menu_uppercase bg-info">
             <div class="container">
                 <nav class="navbar navbar-expand-lg">
-                    <a class="navbar-brand" href="@Url.Action("Index","Home")">
+                    <a class="navbar-brand" href="@Url.Action("Index", "Home")">
                         <img class="logo_light" src="~/asset/vendor/img/logo/logo.png" alt="logo">
                         <img class="logo_dark" src="~/asset/vendor/img/logo/logo.png" alt="logo">
                     </a>
@@ -99,13 +101,13 @@
                     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                         <ul class="navbar-nav text-light">
                             <li>
-                                <a data-toggle="dropdown" class="nav-link active font-weight-bold" href="#">Trang chủ</a>
+                                <a class="nav-link font-weight-bold @{_active = currentAction == "Home" ? "active" : ""; @_active}" href="@Url.Action("Index","Home")">Trang chủ</a>
                             </li>
                             <li>
-                                <a class="nav-link font-weight-bold" href="@Url.Action("Index","Product")">Sản phẩm</a>
+                                <a class="nav-link font-weight-bold @{_active = currentAction == "Product" ? "active" : ""; @_active}" href="@Url.Action("Index","Product")">Sản phẩm</a>
                             </li>
                             <li>
-                                <a class="nav-link font-weight-bold" href="#">Phụ kiện</a>
+                                <a class="nav-link font-weight-bold @{_active = currentAction == "Cart" ? "active" : ""; @_active}" href="@Url.Action("ViewCart","Cart")">Giỏ hàng</a>
                             </li>
                             <li>
                                 <a class="nav-link font-weight-bold" href="#">Liên hệ</a>
@@ -140,8 +142,8 @@
                                         @foreach (cart item in CartHelper.list())
                                         {
                                             <li>
-                                                <a href="#" class="item_remove"><i class="ion-close"></i></a>
-                                                <a href="#"><img src="~/asset/vendor/img/product/@item.img" alt="cart_thumb1">@item.name</a>
+                                                <a href="javascript::void(0)" class="item_remove"><i class="ion-close"></i></a>
+                                                <a href="javascript::void(0)"><img src="~/asset/vendor/img/product/@item.img" alt="cart_thumb1">@item.name</a>
                                                 <span class="cart_quantity"> @item.quantity x <span class="cart_amount"></span>@String.Format(currency, "{0:c}", item.price)</span>
                                             </li>
                                         }
@@ -309,7 +311,8 @@
     <script>
         $('.add-to-cart').on('click', function () {
             var cart = $("#shopping-cart");
-            var imgtodrag = $(this).closest(".product_img").find("img");
+            var imgtodrag = $(this).closest(".product").find(".product_img img");
+            console.log(imgtodrag);
             if (imgtodrag) {
                 var imgclone = imgtodrag.clone()
                     .offset({

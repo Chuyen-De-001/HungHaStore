@@ -8,7 +8,7 @@
 
     <!-- START SECTION SHOP -->
     <div class="section">
-        <div class="container">
+        <div class="container" data-id="@Model.id">
             <div class="row">
                 <div class="col-lg-6 col-md-6 mb-4 mb-md-0">
                     <div class="product-image">
@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                             <div class="cart_btn">
-                                <button class="btn btn-fill-out btn-addtocart" type="button"><i class="icon-basket-loaded"></i> Add to cart</button>
+                                <a class="btn btn-fill-out btn-addtocart" name="btn_add_to_card" type="button"><i class="icon-basket-loaded"></i> Add to cart</a>
                                 <a class="add_compare" href="#"><i class="icon-shuffle"></i></a>
                                 <a class="add_wishlist" href="#"><i class="icon-heart"></i></a>
                             </div>
@@ -117,14 +117,14 @@
                                     {
                                         <div class="owl-item active" style="width: 262.5px; margin-right: 20px;">
                                             <div class="item">
-                                                <div class="product">
+                                                <div class="product" data-id="@item.id">
                                                     <div class="product_img">
                                                         <a href="shop-product-detail.html">
                                                             <img src="~/asset/vendor/img/product/@item.img" alt="@item.img">
                                                         </a>
                                                         <div class="product_action_box">
                                                             <ul class="list_none pr_action_btn">
-                                                                <li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
+                                                                <li class="add-to-cart"><a href="javascript::void(0)"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
                                                                 <li><a href="@Url.Action("View","Product",new { id=item.id})"><i class="icon-magnifier-add"></i></a></li>
                                                             </ul>
                                                         </div>
@@ -175,6 +175,63 @@
         </div>
     </div>
     <!-- START SECTION SUBSCRIBE NEWSLETTER -->
-
 </div>
+<script>
+    $(document).on("click", ".btn-addtocart", function () {
+        var cart = $("#shopping-cart");
+        var imgtodrag = $(this).closest(".container").find(".product-image img");
+            console.log(imgtodrag);
+            if (imgtodrag) {
+                var imgclone = imgtodrag.clone()
+                    .offset({
+                        top: imgtodrag.offset().top,
+                        left: imgtodrag.offset().left
+                    })
+                    .css({
+                        'opacity': '0.7',
+                        'position': 'absolute',
+                        'height': '150px',
+                        'width': '150px',
+                        'z-index': '9000'
+                    })
+                    .appendTo($('body'))
+                    .animate({
+                        'top': cart.offset().top + 10,
+                        'left': cart.offset().left + 10,
+                        'width': 75,
+                        'height': 75
+                    }, 1000, 'easeInOutExpo');
 
+                setTimeout(function () {
+                    cart.effect("shake", {
+                        times: 2
+                    }, 200);
+                }, 1500);
+
+                imgclone.animate({
+                    'width': 0,
+                    'height': 0
+                }, function () {
+                    $(this).detach()
+                });
+            }
+            var id = $(this).closest(".container").attr("data-id");
+            var url = "@Url.Action("Add", "Cart")";
+            $.ajax({
+                url: url + "/" + id,
+                type: "get",
+                success: function (response) {
+                    $(".cart_box").html(response);
+                    $.ajax({
+                        url: "@Url.Action("Count","Cart")",
+                        type: "get",
+                        dataType:"json",
+                        success: function (response) {
+                            console.log(response)
+                            $(".cart_count").html(response.count);
+                        }
+                    });
+                }
+            });
+    });
+</script>

@@ -121,24 +121,27 @@
     })
 
     $(document).on("click", ".product-remove .ti-close", function () {
-        var tr = $(this).closest("tr");
-        var id = tr.attr("data-id");
-        var button = $(this);
-         $.ajax({
-            url: "@Url.Action("RemoveOne", "Cart")",
-            type: "get",
-            data: {
-                id: id,
-            },
-            dataType:"json",
-             success: function (response) {
-                 if (response == false) {
-                     location.reload();
-                 } else {
-                     tr.remove();
-                 }
-            }
-        });
+        var r = confirm("Muốn xóa sản phẩm ra khỏi giỏ hàng.");
+        if (r == true) {
+            var tr = $(this).closest("tr");
+            var id = tr.attr("data-id");
+            var button = $(this);
+             $.ajax({
+                url: "@Url.Action("RemoveOne", "Cart")",
+                type: "get",
+                data: {
+                    id: id,
+                },
+                dataType:"json",
+                 success: function (response) {
+                     if (response == false) {
+                         location.reload();
+                     } else {
+                         tr.remove();
+                     }
+                }
+            });
+        }
     })
 </script>
 

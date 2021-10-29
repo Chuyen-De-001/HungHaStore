@@ -14,5 +14,11 @@ namespace hung_ha.helpers
             dateTime = dateTime.AddSeconds(unixTimeStamp).ToLocalTime();
             return dateTime;
         }
+
+        public static int DateTimeToTimUnix(DateTime date)
+        {
+            int unixTimestamp = (int)(DateTime.UtcNow.Subtract(new DateTime(date.Year, date.Month, date.Day))).TotalSeconds;
+            return unixTimestamp;
+        }
     }
 }

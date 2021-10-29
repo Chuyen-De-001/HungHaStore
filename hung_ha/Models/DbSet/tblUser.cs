@@ -1,7 +1,8 @@
-namespace hung_ha.Models.DbSet
+﻿namespace hung_ha.Models.DbSet
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -17,6 +18,7 @@ namespace hung_ha.Models.DbSet
             tblInvoices = new HashSet<tblInvoice>();
         }
 
+        [DisplayName("Mã tài khoản")]
         public int id { get; set; }
 
         [Required]
