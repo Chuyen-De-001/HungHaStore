@@ -7,6 +7,10 @@ namespace hung_ha.helpers
 {
     public class DateHelper
     {
+
+        /*
+         * Convert timeunix to datetime
+         */
         public static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
         {
             // Unix timestamp is seconds past epoch
@@ -15,9 +19,12 @@ namespace hung_ha.helpers
             return dateTime;
         }
 
-        public static int DateTimeToTimUnix(DateTime date)
+        /*
+         * Convert datetime to time unix
+         */
+        public static int DateTimeToTimeUnix(DateTime date)
         {
-            int unixTimestamp = (int)(DateTime.UtcNow.Subtract(new DateTime(date.Year, date.Month, date.Day))).TotalSeconds;
+            Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(date)).TotalSeconds;
             return unixTimestamp;
         }
     }

@@ -71,6 +71,7 @@ namespace hung_ha.Controllers
                 db.tblInfoes.Add(tblInfo);
                 db.SaveChanges();
                 AlertHelper.set("success", "Thêm thông tin cá nhân thành công");
+                //TODO sửa date_of_bithr and created_at to string.
                 return RedirectToAction("Edit",new {id = tblInfo.id });
             }
             else
